@@ -1,0 +1,57 @@
+#!/bin/bash
+#Author: MP Nadar
+#Purpose : creating summary of login hours
+#Date: 22nd April 2016
+
+LOGGED_IN=$( sed -n '1p' sshetty_ETMUM-DT083_2016-04-22 | awk '{ print $4 }' )
+LOGGED_OU=$( sed -n '$p' sshetty_ETMUM-DT083_2016-04-22 | awk '{ print $4 }' )
+
+StartDate=$(date -u -d "$LOGGED_IN" +"%s")
+FinalDate=$(date -u -d "$LOGGED_OU" +"%s")
+TotalLoginHours=$( date -u -d "0 $FinalDate sec - $StartDate sec" +"%H:%M:%S" )
+
+Numberoflines=$( cat sshetty_ETMUM-DT083_2016-04-22 | wc -l )
+TotalActiveHours=0
+
+for l in $( seq 1 $Numberoflines )
+do 
+ 
+    #echo $l
+
+    if [ $(($l%2)) -eq 0 ];
+    then
+       line=$l
+       prevLine=$(( $l - 1 ))
+       
+       secondTime=$( sed -n "${line}p" sshetty_ETMUM-DT083_2016-04-22 | awk '{ print $4 }' )
+       firstTime=$( sed -n "${prevLine}p"  sshetty_ETMUM-DT083_2016-04-22 | awk '{ print $4 }' )
+       
+       StartDate=$(date -u -d "$firstTime" +"%s")
+       FinalDate=$(date -u -d "$secondTime" +"%s")
+   
+       ActiveHours=$( date -u -d "0 $FinalDate sec - $StartDate sec" +"%H:%M:%S" )
+
+       TotalActiveHours=$(( $(date -u -d "$ActiveHours" +"%s") + $TotalActiveHours ))
+
+
+    fi
+  
+done
+
+
+TotalActiveHours=$( date -u -d "0 $TotalActiveHours sec" +"%H:%M:%S" )
+
+       StartDate=$(date -u -d "$TotalLoginHours" +"%s")
+       FinalDate=$(date -u -d "$TotalActiveHours" +"%s")
+
+TotalInactiveHours=$( date -u -d "0 $StartDate sec - $FinalDate sec" +"%H:%M:%S" )
+
+echo "Total Login Hours: $TotalLoginHours"
+echo "Total Active Hours: $TotalActiveHours"
+echo "Total Inactive Hours: $TotalInactiveHours"
+
+
+
+
+
+
