@@ -1,0 +1,11 @@
+- hosts: googlehosts
+  tasks:
+
+    - name: Screen Off
+      command: bash -c "gsettings set org.gnome.desktop.session idle-delay 120"
+		
+    - name: Screen Lock
+      command: bash -c "gsettings set org.gnome.desktop.screensaver lock-enabled true"
+
+    - name: Screen Lock Time
+      command: bash -c "gsettings set org.gnome.desktop.screensaver lock-delay 0"

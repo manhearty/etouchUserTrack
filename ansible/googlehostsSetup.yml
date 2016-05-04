@@ -1,0 +1,69 @@
+- hosts: googlehosts:192.168.7.140
+  tasks:
+
+    - name: Register todays date
+      shell: date +%F
+      register: todays_date
+
+    - name: copy script to remote servers
+      copy:
+         src=/home/administrator/monitor3.sh
+         dest=/home/{{ user_name}}/.monitor3.sh
+         owner={{ user_name }}
+         group={{ user_name }}
+         mode=0555
+
+    - name: create autostart directory
+      file:
+        path=/home/{{ user_name }}/.config/autostart
+        state=directory 
+        mode=0755
+
+    
+    - name: Create Startup file
+      copy:
+         content="[Desktop Entry]\n
+                  Type=Application\n
+                  Exec=nohup /home/{{ user_name }}/.monitor3.sh >>nohup.out 2>&1 &\n
+                  Hidden=false\n
+                  NoDisplay=false\n
+                  X-GNOME-Autostart-enabled=true\n
+                  Name[en_IN]=Monitor\n
+                  Name=Monitor\n
+                  Comment[en_IN]=should start\n
+                  Comment=should start\n"
+         dest=/home/{{ user_name }}/.config/autostart/nohup.desktop
+         owner={{ user_name }}
+         group={{ user_name }}
+         mode=0664
+
+
+    - name: create logout script
+      copy:
+         content='#!/bin/bash\n
+                 echo "$(date) USER_LOGGED_OUT" >> /home/{{ user_name }}/$(date +%F)'
+         dest=/home/{{ user_name }}/logout.sh
+         owner={{ user_name }}
+         group={{ user_name }}
+         mode=0755
+      
+    - name: Update profile for lightdm for all user
+      lineinfile:
+         dest=/etc/lightdm/lightdm.conf
+         line="session-cleanup-script=/home/{{ user_name }}/logout.sh"
+         state=present
+         insertafter=EOF
+         create=True
+
+    - name: remove the line from  bashrc
+      lineinfile: 
+         dest=/home/{{ user_name }}/.bashrc
+         regexp="^nohup"
+         state=absent
+
+    - name: remove the line from profile
+      lineinfile:
+         dest=/home/{{ user_name }}/.profile
+         regexp="^nohup"
+         state=absent
+

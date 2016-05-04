@@ -1,0 +1,11 @@
+- hosts: googlehosts
+  tasks:
+
+    - name: Get Release Details
+      command: lsb_release -r
+      register: release_details
+
+
+    - debug : msg="Release is {{ release_details.stdout }}" 
+
+ 
