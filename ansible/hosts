@@ -1,0 +1,99 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+# Ex 1: Ungrouped hosts, specify before any group headers.
+
+## green.example.com
+## blue.example.com
+## 192.168.10.100.1
+## 192.168.10.100.10
+
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+
+## [webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.10.1.100
+## 192.168.10.1.110
+
+# If you have multiple hosts following a pattern you can specify
+# them like this:
+
+## www[001:006].example.com
+
+# Ex 3: A collection of database servers in the 'dbservers' group
+
+## [dbservers]
+## 
+## db01.intranet.mydomain.net
+## db02.intranet.mydomain.net
+## 10.25.1.56
+## 10.25.1.57
+
+# Here's another example of host ranges, this time there are no
+# leading 0s:
+
+## db-[99:101]-node.example.com
+
+
+[googlehosts]
+#host2 ansible_ssh_host=192.168.10.5.105 user_name=raju
+#host3 ansible_ssh_host=127.0.0.1 user_name=santosh 
+#host4 ansible_ssh_host=192.168.10.5.57 user_name=stanley
+ETMUM-DT079	ansible_ssh_host=192.168.10.201	user_name=snagare
+ETMUM-DT080	ansible_ssh_host=192.168.10.202	user_name=predekar
+ETMUM-DT081	ansible_ssh_host=192.168.10.203	user_name=srajeshwari
+ETMUM-DT082	ansible_ssh_host=192.168.10.204	user_name=pchettiyar
+ETMUM-DT083	ansible_ssh_host=192.168.10.205	user_name=sshetty
+ETMUM-DT084	ansible_ssh_host=192.168.10.206	user_name=rchaudhari
+ETMUM-DT085	ansible_ssh_host=192.168.10.207	user_name=rkhedkar
+ETMUM-DT086	ansible_ssh_host=192.168.10.208	user_name=rkalekar
+ETMUM-DT087	ansible_ssh_host=192.168.10.209	user_name=pspatil
+ETMUM-DT088	ansible_ssh_host=192.168.10.210	user_name=osontakke
+ETMUM-DT089	ansible_ssh_host=192.168.10.211	user_name=nshrivastava
+ETMUM-DT090	ansible_ssh_host=192.168.10.212	user_name=mkazi
+ETMUM-DT091	ansible_ssh_host=192.168.10.213	user_name=dshah
+ETMUM-DT092	ansible_ssh_host=192.168.10.214	user_name=dupadhyay
+ETMUM-DT093	ansible_ssh_host=192.168.10.215	user_name=dparikh
+ETMUM-DT094	ansible_ssh_host=192.168.10.216	user_name=lvadakkan
+ETMUM-DT095	ansible_ssh_host=192.168.10.217	user_name=ssubramanian
+ETMUM-DT096	ansible_ssh_host=192.168.10.218	user_name=dsoni
+ETMUM-DT097	ansible_ssh_host=192.168.10.219	user_name=dshetty
+ETMUM-DT098	ansible_ssh_host=192.168.10.220	user_name=kingle
+ETMUM-DT099	ansible_ssh_host=192.168.10.221	user_name=mbushi
+ETMUM-DT100	ansible_ssh_host=192.168.10.222	user_name=ptiwari
+ETMUM-DT101	ansible_ssh_host=192.168.10.223	user_name=pmahadik
+ETMUM-DT102	ansible_ssh_host=192.168.10.224	user_name=vudaiyar
+ETMUM-DT103	ansible_ssh_host=192.168.10.225	user_name=vnaik
+ETMUM-DT104	ansible_ssh_host=192.168.10.226	user_name=nbhusa
+ETMUM-DT105	ansible_ssh_host=192.168.10.227	user_name=kkumari
+ETMUM-DT106     ansible_ssh_host=192.168.10.247 user_name=mjyothi
+ETMUM-DT107     ansible_ssh_host=192.168.10.246 user_name=kperiketi
+ETMUM-DT108	ansible_ssh_host=192.168.10.230	user_name=dveluri
+ETMUM-DT109	ansible_ssh_host=192.168.10.231	user_name=rguntamukkala
+ETMUM-DT110	ansible_ssh_host=192.168.10.232	user_name=ychintha
+ETMUM-DT111	ansible_ssh_host=192.168.10.233	user_name=asayyed
+ETMUM-DT112	ansible_ssh_host=192.168.10.234	user_name=slilani
+ETMUM-DT113	ansible_ssh_host=192.168.10.235	user_name=mtalashilkar
+ETMUM-DT114	ansible_ssh_host=192.168.10.236	user_name=yjadhav
+ETMUM-DT115	ansible_ssh_host=192.168.10.237	user_name=vshivhare
+ETMUM-DT116	ansible_ssh_host=192.168.10.238	user_name=voommalapati
+ETMUM-DT117	ansible_ssh_host=192.168.10.239	user_name=ssanki
+ETMUM-DT118	ansible_ssh_host=192.168.10.240	user_name=osumajali
+ETMUM-DT119     ansible_ssh_host=192.168.10.248 user_name=ngharat
+ETMUM-DT120     ansible_ssh_host=192.168.10.249 user_name=mkadam
+ETMUM-DT121	ansible_ssh_host=192.168.10.243	user_name=mpoleri
+ETMUM-DT123	ansible_ssh_host=192.168.10.245	user_name=syadav
+ETMUM-DT123a	ansible_ssh_host=192.168.10.251	user_name=vbomma
+
+
+[googlehosts:vars]
+ansible_sudo_pass=pass@123
+#ansible_sudo_pass='LHS!&$RHS'

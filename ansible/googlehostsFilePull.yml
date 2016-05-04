@@ -1,0 +1,14 @@
+---
+- hosts: googlehosts
+
+  tasks:
+
+    - name: Register todays date
+      shell: date +%F
+      register: todays_date
+   
+    - name: Fetch file from remote hosts
+      fetch: 
+         src=/home/{{ user_name }}/{{ todays_date.stdout }} 
+         dest=/tmp/{{ todays_date.stdout }}//{{ user_name }}_{{ ansible_hostname }}_{{ todays_date.stdout }} 
+         flat=yes

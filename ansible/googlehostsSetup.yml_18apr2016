@@ -1,0 +1,28 @@
+- hosts: googlehosts:192.168.7.140
+  tasks:
+
+    - name: Register todays date
+      shell: date +%F
+      register: todays_date
+
+    - name: copy script to remote servers
+      copy:
+         src=/home/administrator/monitor3.sh
+         dest=/home/{{ user_name}}/.monitor3.sh
+         owner={{ user_name }}
+         group={{ user_name }}
+         mode=0555
+
+    - name: Update profile for monitor3.sh for all user
+      lineinfile:
+         dest=/home/{{ user_name }}/.profile
+         line="nohup /home/{{ user_name }}/.monitor3.sh >>nohup.out 2>&1 &"
+         state=present
+         insertafter=EOF
+         create=True
+
+    - name: remove the line from  bashrc
+      lineinfile: 
+         dest=/home/{{ user_name }}/.bashrc
+         regexp="^nohup"
+         state=absent

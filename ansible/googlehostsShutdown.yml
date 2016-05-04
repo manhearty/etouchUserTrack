@@ -1,0 +1,5 @@
+- hosts: googlehosts
+  tasks:
+
+    - name: restart machine
+      command: shutdown -h now 

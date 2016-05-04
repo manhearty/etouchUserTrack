@@ -1,0 +1,12 @@
+- hosts: googlehosts
+  tasks:
+
+    - name: getuser
+      command: bash -c "awk -F'[/:]' '{if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd | egrep -v '(administrator|lead)'"
+      register: google_user
+
+    - name: get_ip
+      command: bash -c "ifconfig eth0 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1"
+      register: google_user_ip
+
+    - debug: msg="System {{ ansible_hostname }} has user {{ google_user.stdout }} with IP {{ google_user_ip.stdout  }}"   

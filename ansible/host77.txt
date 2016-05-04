@@ -1,0 +1,8 @@
+ETMUM-DT104 ansible_ssh_host=192.168.10.160 user_name=nbhusa
+ETMUM-DT105 ansible_ssh_host=192.168.10.158 user_name=kkumari
+ETMUM-DT108 ansible_ssh_host=192.168.10.127 user_name=dveluri
+ETMUM-DT110 ansible_ssh_host=192.168.10.141 user_name=ychintha
+ETMUM-DT114 ansible_ssh_host=192.168.10.111 user_name=yjadhav
+ETMUM-DT115 ansible_ssh_host=192.168.10.123 user_name=vshivhare
+ETMUM-DT118 ansible_ssh_host=192.168.10.122 user_name=osumajali
+

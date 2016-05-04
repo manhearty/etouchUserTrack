@@ -1,0 +1,25 @@
+- hosts: googlehosts
+
+  tasks:
+
+    - name: Check if Ansible is installed 
+      command: dpkg-query -W google-chrome-stable
+      register: google_chrome_check_deb
+      failed_when: google_chrome_check_deb.rc > 1
+      changed_when: google_chrome_check_deb.rc == 1
+
+    - name: Add Key
+      apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+      when: google_chrome_check_deb.rc == 1
+
+    - name: Set Repository
+      command: sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+      when: google_chrome_check_deb.rc == 1
+
+
+    - name: Install Google Chrome
+      apt : name=google-chrome-stable update_cache=yes
+      when: google_chrome_check_deb.rc == 1
+
+
+      

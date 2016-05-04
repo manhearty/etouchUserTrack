@@ -1,0 +1,22 @@
+---
+- hosts: googlehosts
+
+  tasks:
+
+     - name: Idle Delay
+       gsetting: user=administrator
+                 key=org.gnome.desktop.session.idle-delay
+                 value=120
+
+
+     - name: Lock Enabled
+       gsetting: user=administrator
+                 key=org.gnome.desktop.screensaver.lock-enabled
+                 value=true
+
+
+     - name: Lock Delay
+       gsetting: user=administrator
+                 key=org.gnome.desktop.screensaver.lock-delay
+                 value=0
+
